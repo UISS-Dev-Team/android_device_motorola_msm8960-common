@@ -103,15 +103,24 @@ BOARD_USES_QCOM_HARDWARE := true
 
 TARGET_PROVIDES_LIBLIGHT := true
 
+TARGET_HAS_OLD_QCOM_ION := true
+
+TARGET_QCOM_MEDIA_VARIANT := moto
+
+# QCOM enhanced A/V
+TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+
 # Graphics
-TARGET_QCOM_DISPLAY_VARIANT := caf
+TARGET_QCOM_DISPLAY_VARIANT := moto
 USE_OPENGL_RENDERER := true
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 BOARD_EGL_CFG := $(LOCAL_PATH)/config/egl.cfg
 
 # Telephony
+BOARD_PROVIDES_LIBRIL := true
 BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/modules/ril/MotorolaQualcommRIL.java
+BOARD_RIL_NO_CELLINFOLIST:=true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -144,7 +153,7 @@ TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := false
 
 # assert
-TARGET_OTA_ASSERT_DEVICE := xt925,xt926,xt907,vanquish_u,vanquish,scorpion_mini,mb886,qinara,asanti,asanti_c,xt897
+TARGET_OTA_ASSERT_DEVICE := xt925,xt926,xt907,vanquish_u,vanquish,scorpion_mini,mb886,qinara,asanti,asanti_c,xt897,xt897c
 
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888"
@@ -152,6 +161,7 @@ BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 BOARD_SUPPRESS_EMMC_WIPE := true
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
 TARGET_USERIMAGES_USE_EXT4 := true
+RECOVERY_FSTAB_VERSION := 2
 
 #TWRP
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
