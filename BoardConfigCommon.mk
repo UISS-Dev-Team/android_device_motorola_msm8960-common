@@ -77,6 +77,9 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_HAS_LARGE_FILESYSTEM := true
 
 # Inline kernel building
+ifeq ($(HOST_OS),darwin)
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
+endif
 TARGET_KERNEL_SOURCE := kernel/motorola/msm8960-common
 TARGET_KERNEL_CONFIG := msm8960_mmi_defconfig
 ifeq ($(HAVE_SELINUX),true)
