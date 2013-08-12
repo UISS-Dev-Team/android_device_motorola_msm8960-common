@@ -15,9 +15,9 @@
     <string name="pref_report_gprs_as_edge_title">强制GPRS在E网的信号</string>
     <string name="pref_report_gprs_as_edge_summary">如果你在E网覆盖区，即提高你在E网的GPRS连接速度.</string>
 
-    <string name="pref_external_storage_title">使用外部存储</string>
-    <string name="external_storage_on">使用SD卡的应用程序和媒体</string>
-    <string name="external_storage_off">使用内部存储的应用程序和媒体</string>
+    <string name="pref_external_storage_title">应用外部存储</string>
+    <string name="external_storage_on">正在使用SD卡储存应用程序和媒体</string>
+    <string name="external_storage_off">正在使用内部内存储存应用程序和媒体</string>
 
     <string name="keyboard_layouts_label">Photon Q 键盘</string>
     <string name="keypad_asanti_qwerty_label">Asanti QWERTY</string>
