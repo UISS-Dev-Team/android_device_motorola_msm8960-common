@@ -70,13 +70,9 @@ PRODUCT_PACKAGES += \
 
 # Misc
 PRODUCT_PACKAGES += \
-    DevicePerformanceSettingsHelper \
     libxml2 \
     tcpdump \
     Torch
-
-# Advanced settings
-PRODUCT_PACKAGES += MSM8960Parts
 
 # Lights
 PRODUCT_PACKAGES += lights.msm8960
