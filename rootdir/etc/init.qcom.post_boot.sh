@@ -348,3 +348,11 @@ esac
 insmod /system/lib/modules/adsprpc.ko
 chown system.system /dev/adsprpc-smd
 chmod 666 /dev/adsprpc-smd
+
+# Remove old dhcp leases to prevent "Obtaining IP Address" loop
+rm -f /data/misc/dhcp/*
+
+# Remove invalid configuration
+if grep ctrl_interface=wlan0 /data/misc/wifi/p2p_supplicant.conf > /dev/null; then
+    rm -f /data/misc/wifi/p2p_supplicant.conf
+fi

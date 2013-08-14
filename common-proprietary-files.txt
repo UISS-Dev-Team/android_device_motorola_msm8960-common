@@ -36,7 +36,7 @@ etc/wifi/hostapd_default.conf
 etc/thermald.conf
 
 #HAL
-lib/hw/camera.msm8960.so
+lib/hw/camera.msm8960.so:lib/hw/vendor-camera.msm8960.so
 lib/hw/sensorhub.msm8960.so
 lib/hw/sensors.msm8960.so
 lib/hw/sensors.oem.so
@@ -62,6 +62,7 @@ lib/libgps.so
 lib/libidl.so
 lib/libimage-jpeg-enc-omx-comp.so
 lib/libimage-omx-common.so
+lib/libloc_api_v02.so
 lib/libmm-color-convertor.so
 lib/libmmjpeg.so
 lib/libmmmpod.so
@@ -131,9 +132,6 @@ vendor/lib/libWVStreamControlAPI_L1.so
 
 # ION audio support Available on mako (Nexus 4) (have seperate make file)
 #lib/libacdbloader.so
-
-# GPS Available on mako (Nexus 4) (have seperate make file)
-#lib/libloc_api_v02.so
 
 ## Adreno GPU Available at QDevNet (have seperate make file)
 #bin/gpu_dcvsd

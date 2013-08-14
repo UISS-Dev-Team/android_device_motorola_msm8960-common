@@ -32,7 +32,15 @@ for FILE in `egrep -v '(^#|^$)' ../$DEVICE/device-proprietary-files.txt`; do
   elif [ $COUNT = "0" ]; then
   LINEEND=""
   fi
-  echo "    $OUTDIR/proprietary/$FILE:system/$FILE$LINEEND" >> $MAKEFILE
+  # Split the file from the destination (format is "file[:destination]")
+  OLDIFS=$IFS IFS=":" PARSING_ARRAY=($FILE) IFS=$OLDIFS
+  FILE=${PARSING_ARRAY[0]}
+  DEST=${PARSING_ARRAY[1]}
+  if [ -z "$DEST" ]; then
+    echo "    $OUTDIR/proprietary/$FILE:system/$FILE$LINEEND" >> $MAKEFILE
+  else
+    echo "    $OUTDIR/proprietary/$DEST:system/$DEST$LINEEND" >> $MAKEFILE
+  fi
 done
 
 LINEEND=" \\"
@@ -44,7 +52,15 @@ for FILE in `egrep -v '(^#|^$)' ../msm8960-common/proprietary-files.txt`; do
   if [ $COUNT = "0" ]; then
     LINEEND=""
   fi
-  echo "    $OUTDIR/proprietary/$FILE:system/$FILE$LINEEND" >> $MAKEFILE
+  # Split the file from the destination (format is "file[:destination]")
+  OLDIFS=$IFS IFS=":" PARSING_ARRAY=($FILE) IFS=$OLDIFS
+  FILE=${PARSING_ARRAY[0]}
+  DEST=${PARSING_ARRAY[1]}
+  if [ -z "$DEST" ]; then
+    echo "    $OUTDIR/proprietary/$FILE:system/$FILE$LINEEND" >> $MAKEFILE
+  else
+    echo "    $OUTDIR/proprietary/$DEST:system/$DEST$LINEEND" >> $MAKEFILE
+  fi
 done
 
 (cat << EOF) > ../../../$OUTDIR/$DEVICE-vendor.mk
@@ -175,7 +191,15 @@ for FILE in `egrep -v '(^#|^$)' ../msm8960-common/common-proprietary-files.txt`;
   if [ $COUNT = "0" ]; then
     LINEEND=""
   fi
-   echo "    $OUTDIR/proprietary/$FILE:system/$FILE$LINEEND" >> $MAKEFILE
+  # Split the file from the destination (format is "file[:destination]")
+  OLDIFS=$IFS IFS=":" PARSING_ARRAY=($FILE) IFS=$OLDIFS
+  FILE=${PARSING_ARRAY[0]}
+  DEST=${PARSING_ARRAY[1]}
+  if [ -z "$DEST" ]; then
+    echo "    $OUTDIR/proprietary/$FILE:system/$FILE$LINEEND" >> $MAKEFILE
+  else
+    echo "    $OUTDIR/proprietary/$DEST:system/$DEST$LINEEND" >> $MAKEFILE
+  fi
 done
 
 (cat << EOF) > ../../../$OUTDIR/$DEVICE-vendor.mk
@@ -321,6 +345,5 @@ LOCAL_PATH:=vendor/motorola/msm8960-common/mako/lib
 # Libs from mako 4.2.2 must be added from
 # https://dl.google.com/dl/android/aosp/qcom-mako-jdq39-c89670ca.tgz
 PRODUCT_COPY_FILES += \\
-    \$(LOCAL_PATH)/libacdbloader.so:system/lib/libacdbloader.so \\
-    \$(LOCAL_PATH)/libloc_api_v02.so:system/lib/libloc_api_v02.so
+    \$(LOCAL_PATH)/libacdbloader.so:system/lib/libacdbloader.so
 EOF

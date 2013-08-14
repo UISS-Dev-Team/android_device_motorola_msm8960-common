@@ -77,9 +77,14 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_HAS_LARGE_FILESYSTEM := true
 
 # Inline kernel building
+ifeq ($(HOST_OS),darwin)
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
+endif
 TARGET_KERNEL_SOURCE := kernel/motorola/msm8960-common
 TARGET_KERNEL_CONFIG := msm8960_mmi_defconfig
-#TARGET_KERNEL_SELINUX_CONFIG := msm8960_mmi_selinux_defconfig
+ifeq ($(HAVE_SELINUX),true)
+TARGET_KERNEL_SELINUX_CONFIG := msm8960_mmi_selinux_defconfig
+endif
 BOARD_KERNEL_CMDLINE := console=/dev/null androidboot.hardware=qcom user_debug=31 loglevel=1 zcache
 BOARD_KERNEL_BASE := 0x80200000
 BOARD_KERNEL_PAGESIZE := 2048
@@ -111,7 +116,7 @@ TARGET_USES_ION := true
 BOARD_EGL_CFG := $(LOCAL_PATH)/config/egl.cfg
 
 # Telephony
-BOARD_RIL_CLASS := ../../../device/motorola/msm8960-common/ril/MotorolaQualcommRIL.java
+BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/modules/ril/MotorolaQualcommRIL.java
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -121,7 +126,7 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 BLUETOOTH_HCI_USE_MCT := true
 
 # GPS
-BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
+BOARD_HAVE_NEW_QC_GPS := true
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
@@ -144,7 +149,7 @@ TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := false
 
 # assert
-TARGET_OTA_ASSERT_DEVICE := xt925,xt926,xt907,vanquish_u,vanquish,scorpion_mini,mb886,qinara,asanti,asanti_c,xt897
+TARGET_OTA_ASSERT_DEVICE := xt925,xt926,xt907,vanquish_u,vanquish,scorpion_mini,mb886,qinara,asanti,asanti_c,xt897,xt897c
 
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888"
@@ -163,9 +168,47 @@ TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
 RECOVERY_SDCARD_ON_DATA := true
 TARGET_RECOVERY_INITRC := $(LOCAL_PATH)/init.recovery.rc
 
-# SELinux policy
-BOARD_SEPOLICY_DIRS := \
-        device/motorola/msm8960-common/sepolicy
+# SELinux
+ifeq ($(HAVE_SELINUX),true)
+BOARD_SEPOLICY_DIRS += \
+	device/motorola/msm8960-common/sepolicy
 
-BOARD_SEPOLICY_UNION := \
-        sepolicy.te
+BOARD_SEPOLICY_UNION += \
+	adbd.te \
+	file_contexts \
+	property_contexts \
+	te_macros \
+	bluetooth_loader.te \
+	bridge.te \
+	camera.te \
+	conn_init.te \
+	device.te \
+	dhcp.te \
+	dnsmasq.te \
+	domain.te \
+	drmserver.te \
+	file.te \
+	hostapd.te \
+	init.te \
+	libqc-opt.te \
+	mediaserver.te \
+	mpdecision.te \
+	netd.te \
+	netmgrd.te \
+	nfc.te \
+	property.te \
+	qcom.te \
+	qmux.te \
+	radio.te \
+	rild.te \
+	rmt.te \
+	sensors.te \
+	surfaceflinger.te \
+	system.te \
+	tee.te \
+	thermald.te \
+	ueventd.te \
+	vold.te \
+	wpa_supplicant.te \
+	zygote.te
+endif
