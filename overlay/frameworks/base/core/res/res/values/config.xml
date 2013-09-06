@@ -43,6 +43,7 @@
          should be empty. -->
     <string-array translatable="false" name="config_tether_bluetooth_regexs">
         <item>"bnep\\d"</item>
+        <item>"bt-pan"</item>
     </string-array>
 
     <!-- Array of ConnectivityManager.TYPE_xxxx values allowable for tethering -->
@@ -137,6 +138,8 @@
         <item>0</item>
     </integer-array>
 
+    <integer name="config_buttonBrightnessSettingDefault">0</integer>
+
     <integer-array name="config_longPressVibePattern">
         <item>0</item>
         <item>40</item>
@@ -229,4 +232,16 @@
 
     <!-- Is the device capable of hot swapping an UICC Card -->
     <bool name="config_hotswapCapable">true</bool>
+
+    <!-- Hardware 'face' keys present on the device, stored as a bit field.
+        This integer should equal the sum of the corresponding value for each
+        of the following keys present:
+            1 - Home
+            2 - Back
+            4 - Menu
+            8 - Assistant (search)
+            16 - App switch
+        For example, a device with Home, Back and Menu keys would set this
+        config to 7. -->
+    <integer name="config_deviceHardwareKeys">0</integer>
 </resources>

@@ -87,8 +87,6 @@ PRODUCT_PACKAGES += \
     hciconfig \
     hcitool
 
-PRODUCT_COPY_FILES += $(LOCAL_PATH)/modules/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
-
 # HAL
 PRODUCT_PACKAGES += \
     copybit.msm8960 \
@@ -251,6 +249,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     lpa.decode=false \
     tunnel.decode=true \
     tunnel.audiovideo.decode=true \
+    qcom.hw.aac.encoder=true \
     af.resampler.quality=255 \
     ro.opengles.version=131072
 
