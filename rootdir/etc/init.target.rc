@@ -180,6 +180,10 @@ on boot
    chown system system /sys/class/leds/red/blink
    chown system system /sys/class/leds/charging/brightness
 
+   # Torch
+   chown system system /sys/class/leds/torch-flash/flash_light
+   chmod 0666 /sys/class/leds/torch-flash/flash_light
+
    # Change leds permissions for factory
    chmod 0664 /sys/class/backlight/lcd-backlight/brightness
    chmod 0664 /sys/class/backlight/lcd-backlight/max_brightness
@@ -405,13 +409,6 @@ service qseecomd /system/bin/qseecomd
 service batt_health /system/bin/batt_health
     class main
     group mot_pwric
-
-service dlnasrv /system/bin/dlnasrv
-    class main
-    user mot_dlna
-    group system net_admin sdcard_rw sdcard_r media_rw new_raw inet mount misc
-    oneshot
-    disabled
 
 # Start kickstart if mdm is detected
 on property:ro.baseband=mdm

@@ -2031,6 +2031,22 @@ SectionVerb
 EndSection
 
 SectionVerb
+	Name "HiFi TunnelUSB PROXY Rx"
+
+	EnableSequence
+		'AFE_PCM_RX Audio Mixer MultiMedia4':1:1
+	EndSequence
+
+	DisableSequence
+		'AFE_PCM_RX Audio Mixer MultiMedia4':1:0
+	EndSequence
+
+	# ALSA PCMs
+	PlaybackPCM 9
+
+EndSection
+
+SectionVerb
 	Name "HiFi TunnelUSB PROXY Rx Speaker"
 
 	EnableSequence
@@ -3009,7 +3025,7 @@ SectionDevice
 		'RX1 MIX1 INP1':0:RX1
 		'EAR PA Gain':0:POS_6_DB
 		'DAC1 Switch':1:1
-		'RX1 Digital Volume':1:73
+		'RX1 Digital Volume':1:66
 	EndSequence
 
 	DisableSequence
@@ -3032,7 +3048,7 @@ SectionDevice
 		'RX1 MIX1 INP1':0:RX1
 		'EAR PA Gain':0:POS_6_DB
 		'DAC1 Switch':1:1
-		'RX1 Digital Volume':1:73
+		'RX1 Digital Volume':1:66
 	EndSequence
 
 	DisableSequence
@@ -3103,8 +3119,8 @@ SectionDevice
 		'SLIM_0_RX Channels':0:One
 		'RX3 MIX1 INP1':0:RX1
 		'RX4 DSM MUX':0:DSM_INV
-		'LINEOUT1 Volume':1:30
-		'LINEOUT3 Volume':1:30
+		'LINEOUT1 Volume':1:50
+		'LINEOUT3 Volume':1:50
 		'RX3 Digital Volume':1:66
 		'RX4 Digital Volume':1:66
 	EndSequence
@@ -3129,23 +3145,15 @@ SectionDevice
 		'SLIM_0_RX Channels':0:One
 		'RX3 MIX1 INP1':0:RX1
 		'RX4 DSM MUX':0:DSM_INV
-		'LINEOUT1 DAC Switch':1:1
-		'LINEOUT3 DAC Switch':1:1
-		'LINEOUT1 Volume':1:75
-		'LINEOUT3 Volume':1:75
-		'RX3 Digital Volume':1:75
-		'RX4 Digital Volume':1:75
-		'SPK AMP EN Switch':1:1
-		'FENS Enable':1:1
+		'LINEOUT1 Volume':1:62
+		'LINEOUT3 Volume':1:62
+		'RX3 Digital Volume':1:66
+		'RX4 Digital Volume':1:66
 	EndSequence
 
 	DisableSequence
-		'FENS Enable':1:0
-		'SPK AMP EN Switch':1:0
 		'LINEOUT1 Volume':1:0
 		'LINEOUT3 Volume':1:0
-		'LINEOUT1 DAC Switch':1:0
-		'LINEOUT3 DAC Switch':1:0
 		'RX4 DSM MUX':0:CIC_OUT
 		'RX3 MIX1 INP1':0:ZERO
 	EndSequence
@@ -3156,8 +3164,8 @@ SectionDevice
 EndSection
 
 SectionDevice
-	Name "Basic Dock"
-	Comment "Basic Dock device"
+	Name "Dock"
+	Comment "Dock Rx device"
 
 	EnableSequence
 		'SLIM_0_RX Channels':0:Two
@@ -3180,8 +3188,8 @@ SectionDevice
 EndSection
 
 SectionDevice
-	Name "Speaker Basic Dock"
-	Comment "Speaker + Basic Dock combo device"
+	Name "Dock Speaker"
+	Comment "Dock Speaker Rx device"
 
 	EnableSequence
 		'SLIM_0_RX Channels':0:Two
@@ -3205,30 +3213,6 @@ SectionDevice
 	EndSequence
 
 	ACDBID  55:1
-	EffectsMixerCTL "SRS TruMedia"
-
-EndSection
-
-SectionDevice
-	Name "Car Dock"
-	Comment "Car Dock device"
-
-	EnableSequence
-		'SLIM_0_RX Channels':0:Two
-		'RX3 MIX1 INP1':0:RX1
-		'RX5 MIX1 INP1':0:RX2
-		'LINEOUT1 Volume':1:75
-		'LINEOUT2 Volume':1:75
-	EndSequence
-
-	DisableSequence
-		'RX3 MIX1 INP1':0:ZERO
-		'RX5 MIX1 INP1':0:ZERO
-		'LINEOUT1 Volume':1:0
-		'LINEOUT2 Volume':1:0
-	EndSequence
-
-	ACDBID  54:1
 	EffectsMixerCTL "SRS TruMedia"
 
 EndSection
@@ -3590,20 +3574,30 @@ SectionDevice
 	Comment "Camcorder Tx device"
 
 	EnableSequence
-		'SLIM_0_TX Channels':0:One
-		'SLIM TX7 MUX':0:DEC4
+		'SLIM TX7 MUX':0:DEC3
+		'DEC3 MUX':0:ADC4
+		'DEC3 Volume':1:85
+		'ADC4 Volume':1:100
+		'SLIM TX8 MUX':0:DEC4
 		'DEC4 MUX':0:ADC3
-		'DEC4 Volume':1:67
-		'ADC3 Volume':1:100
-		'MICBIAS1 CAPLESS Switch':1:1
+		'DEC4 Volume':1:85
+		'ADC3 Volume':1:50
+		'MICBIAS1 CAPLESS Switch':1:0
+		'MICBIAS3 CAPLESS Switch':1:0
+		'SLIM_0_TX Channels':0:Two
 	EndSequence
 
 	DisableSequence
 		'SLIM TX7 MUX':0:ZERO
 		'DEC4 MUX':0:ZERO
 		'DEC4 Volume':1:0
+		'SLIM TX8 MUX':0:ZERO
+		'DEC3 MUX':0:ZERO
+		'DEC3 Volume':1:0
 		'ADC3 Volume':1:0
+		'ADC4 Volume':1:0
 		'MICBIAS1 CAPLESS Switch':1:0
+		'MICBIAS3 CAPLESS Switch':1:0
 	EndSequence
 
 	ACDBID	4:2
@@ -4136,8 +4130,8 @@ SectionDevice
 		'DEC3 MUX':0:ADC4
 		'DEC3 Volume':1:67
 		'ADC4 Volume':1:100
-		'MICBIAS1 CAPLESS Switch':1:1
-		'MICBIAS3 CAPLESS Switch':1:1
+		'MICBIAS1 CAPLESS Switch':1:0
+		'MICBIAS3 CAPLESS Switch':1:0
 		'SLIM_0_TX Channels':0:Two
 	EndSequence
 
@@ -4235,8 +4229,8 @@ SectionDevice
 		'DEC3 MUX':0:ADC4
 		'DEC3 Volume':1:67
 		'ADC4 Volume':1:100
-		'MICBIAS1 CAPLESS Switch':1:1
-		'MICBIAS3 CAPLESS Switch':1:1
+		'MICBIAS1 CAPLESS Switch':1:0
+		'MICBIAS3 CAPLESS Switch':1:0
 		'SLIM_0_TX Channels':0:Two
 	EndSequence
 
@@ -5713,29 +5707,6 @@ SectionDevice
 
 	ACDBID	26:1
 	EffectsMixerCTL "SRS TruMedia"
-
-EndSection
-
-SectionDevice
-	Name "Dock"
-	Comment "Dock Rx device"
-
-	EnableSequence
-		'SLIMBUS_0_RX Channels':0:Two
-		'RX7 MIX1 INP1':0:RX1
-		'RX3 MIX1 INP1':0:RX2
-		'LINEOUT1 Volume':1:91
-		'LINEOUT5 Volume':1:91
-	EndSequence
-
-	DisableSequence
-		'RX7 MIX1 INP1':0:ZERO
-		'RX3 MIX1 INP1':0:ZERO
-		'LINEOUT1 Volume':1:0
-		'LINEOUT5 Volume':1:0
-	EndSequence
-
-	ACDBID  40:1
 
 EndSection
 
