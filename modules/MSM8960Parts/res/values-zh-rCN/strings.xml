@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">高级设置</string>
+
+    <string name="keypad_title">键盘</string>
+
+    <string name="pref_keypad_multipress_title">连续输入的间隔</string>
+    <string name="pref_keypad_multipress_summary">随后在此区间按键可以用来直接输入备选字符.\n目前设置为: %s</string>
+    <string name="pref_keypad_mplang_title">连续输入的语言</string>
+    <string name="pref_keypad_mplang_summary">备用字符通过multipress功能进入语言选择.\n目前设置为: %s</string>
+
+    <string name="other">其它</string>
+
+    <string name="pref_report_gprs_as_edge_title">强制GPRS在E网的信号</string>
+    <string name="pref_report_gprs_as_edge_summary">如果你在E网覆盖区，即提高你在E网的GPRS连接速度.</string>
+
+    <string name="pref_external_storage_title">应用外部存储</string>
+    <string name="external_storage_on">正在使用SD卡储存应用程序和媒体</string>
+    <string name="external_storage_off">正在使用内部内存储存应用程序和媒体</string>
+
+    <string name="keyboard_layouts_label">Photon Q 键盘</string>
+    <string name="keypad_asanti_qwerty_label">Asanti QWERTY</string>
+    <string name="keypad_asanti_qwertz_label">Asanti QWERTZ</string>
+    <string name="keypad_asanti_czech_qwerty_label">Asanti Czech QWERTY</string>
+    <string name="keypad_asanti_czech_qwertz_label">Asanti Czech QWERTZ</string>
+
+    <string name="reboot_prompt_title">需要重新启动</string>
+    <string name="reboot_prompt_message">为了应用更改后的设置，需要重新启动.\n\n你现在要重新启动吗?</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+
+</resources>
